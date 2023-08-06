@@ -1,0 +1,91 @@
+<div style="padding: 11px 0px;
+font-weight: bold;" >Angular Assessments</div>
+<div class="relative-block-container">
+  <div>
+    <textarea #textareaRef  
+      cols="50"
+      rows="6"
+      [formControl]="textCtrl"
+      placeholder=""
+      wrap="hard"></textarea>
+
+    <ngx-mentions [textInputElement]="textareaRef"
+      [menuTemplate]="menuTemplate"
+      [selectedChoices]="selectedChoices"
+      [mentionsConfig]="mentionsConfig"
+      [searchRegexp]="searchRegexp"
+      [mentions]="mentions"
+      [removeWholeTagOnBackspace]="true"
+      (search)="loadChoices($event)"
+      (selectedChoicesChange)="onSelectedChoicesChange($event)"
+      (menuShow)="onMenuShow()"
+      (menuHide)="onMenuHide()"></ngx-mentions>
+
+    <ng-template #menuTemplate
+      let-selectChoice="selectChoice">
+      <ngx-text-input-autocomplete-menu [choices]="choices"
+        [getDisplayLabel]="getDisplayLabel"
+        (selectChoice)="selectChoice($event)">
+      </ngx-text-input-autocomplete-menu>
+    </ng-template>
+  </div>
+
+<div style="display: flex;">
+  <div style="border: 2px dotted #80808057;
+  width: 27%;
+  padding: 10px;
+  border-radius: 6px;
+  color: #ffa5009c;">+ Add Note</div>&nbsp;&nbsp;&nbsp;
+  <div style="color: orange;
+  padding: 10px;
+  width: 24%;
+  background: #ffa5001a;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 600;">Reset</div>
+</div>
+<style>
+  .relative-block-container {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+    }
+
+    .relative-block-container div{
+      width: 300px;
+    }
+
+    ::ng-deep.ngx-text-highlight-tag {
+      border-radius: 2px!important;
+      padding: 1px 2px!important;
+    } 
+    
+    .relative-block-container textarea {
+      line-height: 1.4;
+      word-spacing:2px;
+      resize: none;
+      border: 2px solid orange;
+    border-radius: 10px;
+    outline: -webkit-focus-ring-color auto 0px !important;
+    padding: 10px;
+    }
+
+
+    ::ng-deep.hash-highlight-tag {
+      background-color: orange !important;
+      color: #000000!important;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    
+    .formatted-text {
+      margin: 3rem 0;
+      width: 300px;
+      line-height: 1.4;
+      font-size: 16px;
+    }
+
+    .set-background {
+background-color: orange !important;
+    }
+</style>
